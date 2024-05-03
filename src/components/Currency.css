@@ -1,0 +1,8 @@
+.green-dropdown {
+    background-color:salmon;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
