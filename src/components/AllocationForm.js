@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
-import Currency from './CurrencyList';
+import Currency from './Currency';
 
 const AllocationForm = (props) => {
     const { dispatch,remaining  } = useContext(AppContext);
@@ -21,6 +21,7 @@ const AllocationForm = (props) => {
             name: name,
             cost: parseInt(cost),
         };
+
         if(action === "Reduce") {
             dispatch({
                 type: 'RED_EXPENSE',
@@ -32,6 +33,21 @@ const AllocationForm = (props) => {
                     payload: expense,
                 });
             }
+
+
+        if(action === "Add") {
+            dispatch({
+                type: 'RED_EXPENSE',
+                payload: expense,
+            });
+        } else {
+                dispatch({
+                    type: 'SUB_EXPENSE',
+                    payload: expense,
+                });
+            }    
+        
+        
     };
 
     return (
@@ -60,8 +76,8 @@ const AllocationForm = (props) => {
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
 
-                  <div className="input-group-prepend">
-                        <span className="input-group-text">£</span> {/* Symbol added here */}
+                  <div className="input-group-prepend" style={{ marginLeft: '2rem' }}>
+                        <label className="input-group-text" htmlFor='inputGroupSelect03'> £ </label> {/* Symbol added here */}
                     </div>
 
                     <input
@@ -69,7 +85,7 @@ const AllocationForm = (props) => {
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
+                        style={{ size: 10}}
                         onChange={(event) => setCost(event.target.value)}>
                         </input>
 
